@@ -24,10 +24,10 @@ class plm
 		{
 			System.out.println("**********************");
 			System.out.println("1. Insert");
-			System.out.println("2. Modify");
-			System.out.println("3. Delete");
-			System.out.println("4. Display");
-			System.out.println("5. Search");
+			System.out.println("2. Delete");
+			System.out.println("3. Display");
+			System.out.println("4. Search");
+			System.out.println("5. General Ledger");
 			System.out.println("6. Eligibility");
 			System.out.println("**********************");
 
@@ -39,21 +39,21 @@ class plm
 				obj.insert();
 				break;
 			case 2:
-				obj.modify();
-				break;
-			case 3:
 				obj.remove();
 				break;
-			case 4:
+			case 3:
 				obj.display();
 				break;
-			case 5:
+			case 4:
 				obj.search();
 				break;
-			case 6:
+			case 5:
 				stud = new BufferedReader(new FileReader("student.txt"));
 				jour = new BufferedReader(new FileReader("journal.txt"));
 				obj.ledger(stud.readLine(),jour.readLine());
+				break;
+			case 6:
+				obj.eligible();
 				break;
 			default:
 				System.out.println("Invalid Option");
@@ -63,7 +63,7 @@ class plm
 
 	public void insert() throws IOException, FileNotFoundException
 	{
-		int check=0,usn2,usn3;
+		int check=0,usn2=0,usn3=0;
 		String name, usn, sem, branch, cgpa, nob,r,sort,sort1="";
 		String p = "999" + "|" + "999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" ;
 		System.out.println("Enter the usn");
@@ -83,11 +83,13 @@ class plm
 			//if record already exists
 			if(check==1)
 			{
-				System.out.println("Enter Semester, CGPA and Number of Backlogs");
+				System.out.println("Enter Name, Semester, Branch, CGPA and Number of Backlogs");
+				name = scan.next(); 
 				sem = scan.next(); 
+				branch = scan.next(); 
 				cgpa = scan.next();
 				nob = scan.next();
-
+				
 				String b = usn1 + "|" + sem + "|"  + cgpa + "|" + nob + "|";
 				int len = b.length();
 				String s1 = "-";
@@ -96,6 +98,7 @@ class plm
 					for(int i=len;i<=50;i++)
 					b = b.concat(s1);
 				}
+				modify(name,usn1,sem,branch,cgpa,nob);
 				File file1 = new File("journal.txt");
 				BufferedReader br1 = new BufferedReader(new FileReader(file1));
 				usn3=Integer.parseInt(usn1);
@@ -114,19 +117,19 @@ class plm
 					nob=result[3];
 					sort1 = usn2 + "|" + sem + "|" + cgpa + "|" + nob + "|";
 					System.out.println(usn2);
-					if(usn3<=usn2)
+					if(usn3<usn2)
 					{
 						System.out.println(usn3 + " if " + usn2 );
 						pw1.println(b);
-						pw1.println(sort1);
+						//pw1.println(sort1);
+						break;                                            
+					}
+					else if(usn3 == usn2)        
+					{
+						pw1.println(sort1); 
+						pw1.println(b); 
 						break;
 					}
-					// else if(usn3 == usn2)
-					// {
-					// 	pw1.println(sort1); 
-					// 	pw1.println(b); 
-					// 	break;
-					// }
 					System.out.println(usn3 + " outside " +usn2); 
 					pw1.println(sort1); 
 				}    
@@ -140,18 +143,41 @@ class plm
 					}
 					else
 					{
-						while(!result[1].equals("999"))
+						if(usn3>usn2)
 						{
-							System.out.println("while" + result[0]);
-							sort = br1.readLine();
-							pw1.println(sort1);
-							result = sort.split("\\|");
-							usn2=Integer.parseInt(result[0]);
-							sem = result[1];
-							cgpa=result[2];
-							nob=result[3];
-							sort1 = usn2 + "|" + sem + "|" + cgpa + "|" + nob + "|";
+							pw1.println(b);
+							pw1.println(p);     
 						}
+						else if (usn3 == usn2)
+						{
+							while(!result[1].equals("999"))
+							{
+								System.out.println("while" + result[0]);
+								sort = br1.readLine();
+								result = sort.split("\\|");
+								usn2=Integer.parseInt(result[0]);
+								sem = result[1];
+								cgpa=result[2];
+								nob=result[3];
+								sort1 = usn2 + "|" + sem + "|" + cgpa + "|" + nob + "|";
+								pw1.println(sort1);
+							}
+						}
+						else
+						{
+							while(!result[1].equals("999"))
+							{
+								pw1.println(sort1);
+								sort = br1.readLine();
+								result = sort.split("\\|");
+								usn2=Integer.parseInt(result[0]);
+								sem = result[1];
+								cgpa=result[2];
+								nob=result[3];
+								sort1 = usn2 + "|" + sem + "|" + cgpa + "|" + nob + "|";
+							}
+						}
+						
 						pw1.println(p);
 					}
 				}
@@ -210,7 +236,7 @@ class plm
 					pw1.println(sort);
 				}
 				else
-				{
+				{ 
 					while(!result[1].equals("999"))
 					{
 						pw1.println(sort);
@@ -233,15 +259,13 @@ class plm
 	//UPDATING
 
 
-	public void modify() throws FileNotFoundException,IOException,NullPointerException
+	public void modify(String name1, String usn1,String sem1,String branch1, String cgpa1,String nob1) throws FileNotFoundException,IOException,NullPointerException
 	{	String name = "", usn = "", sem ="", branch = "", cgpa= "", nob="", r;
 		int check=0;
 		File file = new File("student.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		File temp = new File("temp.txt");
 		PrintWriter pw = new PrintWriter(temp);
-		System.out.println("Enter usn");
-		String usn1 = scan.next();
 
 		while((r= br.readLine()) !=null)
 		{	
@@ -255,16 +279,7 @@ class plm
 
 			if(usn.equals(usn1))
 			{
-				check=1;
-				System.out.println("The details are: " + name + " " + usn + " " + sem + " " + branch+ " " + cgpa + " " + nob );
-				System.out.println("Enter Name, USN, Sem, Branch, CGPA, Number of Backlogs");
-				String name11 = scan.next();
-				String usn11 = scan.next();
-				String sem11 = scan.next();
-				String branch11 = scan.next();
-				String cgpa11 = scan.next();
-				String nob11= scan.next();
-				String b = name11+"|"+usn11+"|"+sem11+"|"+branch11+"|"+cgpa11+"|"+nob11+"|";
+				String b = name1+"|"+usn1+"|"+sem1+"|"+branch1+"|"+cgpa1+"|"+nob1+"|";
 				int len = b.length();
 
 				String s1 = "-";
@@ -280,10 +295,6 @@ class plm
 				pw.println(r);
 			}
 		}
-		if(check == 0)
-			System.out.println("USN not present in the records");
-		else
-			System.out.println("File Modified");
 		pw.flush();
 		pw.close();
 		br.close();	
@@ -417,21 +428,25 @@ class plm
 			{
 				System.out.println(name_s + " " + usn_s + " " + sem_j + " " + branch_s + " " + cgpa_j + " " + nob_j);
 				ledger(s1,jour.readLine());
-			}
+			}                                          
 			else if(item1 < item2)
 			{
-				System.out.println("item1<item2");
+				System.out.println("Latest Entry:" + name_s + " " + usn_s + " " + sem_s + " " + branch_s + " " + cgpa_s + " " + nob_s);
 				ledger(stud.readLine(),s2);
 			}
 			else if(item1 > item2)
 			 {
-				 System.out.println("item1>item2");
+				 System.out.println("Invalid Record Entry");
 				 ledger(s1,jour.readLine());
+			 }
+			 else
+			 {
+
 			 }
 		}
 		 else //ss==null || jj==null
 		 {
-			 if(jj[0].equals("999"))
+			 if(jj[0].equals("999"))      
 			{ 
 				s1=stud.readLine();
 				ss = s1.split("\\|"); 
@@ -457,6 +472,58 @@ class plm
 			}
 		 }
 	}	
+
+
+	//ELIGIBILITY
+	public void eligible() throws IOException
+	{
+		//platinum
+		//cgpa >=8.0 && nob=0
+		//gold
+		//cgpa >=7.0 && nob=0
+		//silver
+		//cgpa >=6.0
+		String name, sem, branch, cgpa1, nob1, r;
+		double cgpa, nob;
+		BufferedReader br = new BufferedReader(new FileReader("student.txt"));
+		while((r = br.readLine()) != null )
+		{
+			String[] result = r.split("\\|"); 
+			name=result[0];
+			sem= result[2];
+			branch=result[3];
+			cgpa1=result[4];
+			nob1=result[5];
+			cgpa = Double.parseDouble(cgpa1);
+			nob = Double.parseDouble(nob1);
+			if(cgpa!=999)
+			{
+				if(cgpa >= 8.0 && nob == 0)
+			{
+				System.out.println(name + " is eligible for the following packages:");
+				System.out.println("Platinum");
+				System.out.println("Gold");
+				System.out.println("Silver");
+			}
+			else if(cgpa >= 7.0 && nob == 0)
+			{
+				System.out.println(name + " is eligible for the following packages:");
+				System.out.println("Gold");
+				System.out.println("Silver");
+			}
+			else if(cgpa >= 6.0)
+			{
+				System.out.println(name + " is eligible for the following packages:");
+				System.out.println("Silver");
+			}
+			else
+			{
+				System.out.println(name + " is not eligible");
+			}
+			}	
+		}
+
+	}
 }	
 
 
