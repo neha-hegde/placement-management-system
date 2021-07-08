@@ -124,6 +124,7 @@ public class Insert extends JFrame implements ActionListener
         {
 			try
 			{
+				String p = "999" + "|" + "999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" ;
 				File data = new File("student.txt");
 				File data1 = new File("journal.txt");
 				if(data.createNewFile() && data1.createNewFile())   
@@ -133,7 +134,6 @@ public class Insert extends JFrame implements ActionListener
 					Boolean createNewFile1 = data1.createNewFile();
 					System.out.println("student "+createNewFile);
 					System.out.println("journal "+createNewFile1);
-					String p = "999" + "|" + "999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" ;
 					BufferedWriter pw = new BufferedWriter(new FileWriter(data));
 					BufferedWriter pw1 = new BufferedWriter(new FileWriter(data1));
 					pw.write(p);
@@ -143,13 +143,6 @@ public class Insert extends JFrame implements ActionListener
 					pw1.write("\n");
 					pw1.close();
 				}
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-            try
-            {
 
 				String name = nameT.getText();
            		String usn1 = usnT.getText();
@@ -161,11 +154,9 @@ public class Insert extends JFrame implements ActionListener
 
                 int check=0,usn2=0,usn3=0;
 				String usn="",r,sort,sort1="";
-                String p = "999" + "|" + "999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" ;
 		       // System.out.println("Enter the usn");
 		        //String usn1 = scan.next();
-		        String file = "student.txt";
-		        //BufferedReader br = new BufferedReader(new FileInputStream("C:/Users/nehah/OneDrive/Desktop/Neha/6th Semester/FS/Lab/Mini Project/Placement Management System/student.txt"));
+		        File file = new File("student.txt");
 		     	BufferedReader br=new BufferedReader(new FileReader(file));
 			    while((r= br.readLine()) !=null)
 		        {
@@ -207,16 +198,17 @@ public class Insert extends JFrame implements ActionListener
 					BufferedWriter pw1 = new BufferedWriter(new FileWriter(temp));
 					System.out.println("count1 " + b);
 		        	String result[]={};
+					String sem1,cgpa1,nob1;
 		        	// sort="";
 		        	while((sort = br1.readLine()) != null)
 		        	{
 						System.out.println("while");
 		        		result = sort.split("\\|");
 		        		usn2=Integer.parseInt(result[0]);
-		        		sem = result[1];
-		        		cgpa=result[2];
-		        		nob=result[3];
-		        		sort1 = usn2 + "|" + sem + "|" + cgpa + "|" + nob + "|";
+		        		sem1 = result[1];   
+		        		cgpa1=result[2];
+		        		nob1=result[3];
+		        		sort1 = usn2 + "|" + sem1 + "|" + cgpa1 + "|" + nob1 + "|";
 						System.out.println(sort1);
 						System.out.println(usn3 + " " + usn2);
 		        		if(usn3<usn2)
@@ -234,6 +226,7 @@ public class Insert extends JFrame implements ActionListener
 		        			break;
 		        		}
 		        		pw1.write(sort1); 
+						pw1.write("\n");
 		        	}    
 		        	if(sort!=null )
 		        	{
@@ -259,11 +252,11 @@ public class Insert extends JFrame implements ActionListener
 		        					sort = br1.readLine();
 		        					result = sort.split("\\|");
 		        					usn2=Integer.parseInt(result[0]);
-		        					sem = result[1];
-		        					cgpa=result[2];
-		        					nob=result[3];
-		        					sort1 = usn2 + "|" + sem + "|" + cgpa + "|" + nob + "|";
-									System.out.println("inside while usn3 == usn2" + name + " " + usn1 + " " + sem + " " + branch + " " + cgpa + " " + nob);
+		        					sem1 = result[1];
+		        					cgpa1=result[2];
+		        					nob1=result[3];
+		        					sort1 = usn2 + "|" + sem1 + "|" + cgpa1 + "|" + nob1 + "|";
+									System.out.println("inside while usn3 == usn2" + name + " " + usn2 + " " + sem1 + " " + branch + " " + cgpa1 + " " + nob1);
 		        					pw1.write(sort1);
 									pw1.write("\n");
 		        				}
@@ -278,14 +271,15 @@ public class Insert extends JFrame implements ActionListener
 		        					sort = br1.readLine();
 		        					result = sort.split("\\|");
 		        					usn2=Integer.parseInt(result[0]);
-		        					sem = result[1];
-		        					cgpa=result[2];
-		        					nob=result[3];
-		        					sort1 = usn2 + "|" + sem + "|" + cgpa + "|" + nob + "|";
+		        					sem1 = result[1];
+		        					cgpa1=result[2];
+		        					nob1=result[3];
+		        					sort1 = usn2 + "|" + sem1 + "|" + cgpa1 + "|" + nob1 + "|";
 		        				}
 		        			}
 							System.out.println("after after while usn3 == usn2" + name + " " + usn1 + " " + sem + " " + branch + " " + cgpa + " " + nob);
 		        			pw1.write(p);
+							pw1.write("\n");
 		        		}
 		        	}
 					showMessageDialog(null, "Record Updated!");
@@ -383,7 +377,7 @@ public class Insert extends JFrame implements ActionListener
            {
                e.printStackTrace();
            }       		
-    	 }
+    	}
 
 		 if(ae.getSource()==back)
         {
@@ -434,9 +428,9 @@ public class Insert extends JFrame implements ActionListener
 				{
 					for(int i=len;i<=50;i++)
 						b = b.concat(s1);
-					pw.write(b);
-					pw.write("\n");
 				}
+				pw.write(b);
+				pw.write("\n");
 			}
 			else
 			{

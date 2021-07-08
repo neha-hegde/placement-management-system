@@ -8,7 +8,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 public class Eligible extends JFrame implements ActionListener
 {
     
-    private JLabel eligibleheading;
+    private JLabel eligibleheading,eligibleheading1,eligibleheading2,eligibleheading3;
     private JTextArea output;
     private JButton display,back;
     
@@ -28,9 +28,25 @@ public class Eligible extends JFrame implements ActionListener
         Font font = new Font("Verdana", Font.BOLD, 16);
 
         eligibleheading=new JLabel("PLACEMENT ELIGIBILITY");
-        eligibleheading.setBounds(200, 2, 700,150);
+        eligibleheading.setBounds(200, 5, 700,20);
         eligibleheading.setFont(font);
         eligibleheading.setForeground(Color.BLACK);
+
+        eligibleheading1=new JLabel("PLATINUM: CGPA>=8 AND NO BACKLOGS ALLOWED");
+        eligibleheading1.setBounds(200, 50, 700,20);
+        eligibleheading1.setFont(font);
+        eligibleheading1.setForeground(Color.BLACK);
+
+        eligibleheading2=new JLabel("GOLD: CGPA>=7 AND NO BACKLOGS ALLOWED");
+        eligibleheading2.setBounds(200, 75, 700,20);
+        eligibleheading2.setFont(font);
+        eligibleheading2.setForeground(Color.BLACK);
+
+        eligibleheading3=new JLabel("SILVER: CGPA>=6");
+        eligibleheading3.setBounds(200, 100, 700,20);
+        eligibleheading3.setFont(font);
+        eligibleheading3.setForeground(Color.BLACK);
+
 
         output=new JTextArea();
         output.setBounds(200, 150, 900,400);
@@ -53,6 +69,9 @@ public class Eligible extends JFrame implements ActionListener
         back.setBackground(Color.LIGHT_GRAY);
 
         con.add(eligibleheading);
+        con.add(eligibleheading1);
+        con.add(eligibleheading2);
+        con.add(eligibleheading3);
 		con.add(output);
         con.add(display);
         con.add(back);
@@ -78,13 +97,12 @@ public class Eligible extends JFrame implements ActionListener
                 System.out.println("hi1");
                 File temp = new File("temp.txt");
 				Boolean createNewFile1 = temp.createNewFile();
-                //BufferedWriter pw = new BufferedWriter(new FileWriter(temp));
+                BufferedWriter pw = new BufferedWriter(new FileWriter(temp));
 
                 BufferedReader br = new BufferedReader(new FileReader("student.txt"));
                 System.out.println("before while");
 		        while((r = br.readLine()) != null )
 		        {
-                    BufferedWriter pw = new BufferedWriter(new FileWriter(temp));
                     System.out.println("inside while");
 		        	String[] result = r.split("\\|"); 
 		        	name=result[0];
@@ -120,20 +138,20 @@ public class Eligible extends JFrame implements ActionListener
                             pw.write("\n");
 		        	    }
 		        	}	
-                    System.out.println("outside while");
-                    br.close();
-                    pw.close();
-                    System.out.println("after close");
-                    File file = new File("temp.txt");
-                    BufferedReader br1 = new BufferedReader(new FileReader(file));
-                    System.out.println("before display");
-                    output.read(br1,null);
-                    System.out.println("after display");
-                    br1.close(); 
-                    output.requestFocus();
-                    //file.delete();  
-                    System.out.println("end");
                 }
+                System.out.println("outside while");
+                br.close();
+                pw.close();
+                System.out.println("after close");
+                File file = new File("temp.txt");
+                BufferedReader br1 = new BufferedReader(new FileReader(file));
+                System.out.println("before display");
+                output.read(br1,null);
+                System.out.println("after display");
+                br1.close(); 
+                output.requestFocus();
+                file.delete();  
+                System.out.println("end");
             }
             catch(Exception e)
             {
