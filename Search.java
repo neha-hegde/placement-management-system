@@ -21,14 +21,15 @@ public class Search extends JFrame implements ActionListener
         super("Search Record");
         con = getContentPane();
         con.setLayout(null);
-        con.setBackground(Color.LIGHT_GRAY);
+        Color  lightBlue = new Color(164, 206, 209);
+        con.setBackground(lightBlue);
 
         con.setSize(300,300);
         con.setLayout(null);
         con.setVisible(true);
 
         Font font = new Font("Verdana", Font.BOLD, 16);
-
+        Color blue = new Color(42, 135, 141);
         usnL=new JLabel("Enter usn of record to be searched");
         usnL.setBounds(400, 50, 700,150);
         usnL.setFont(font);
@@ -49,15 +50,15 @@ public class Search extends JFrame implements ActionListener
 		search.setBounds(400,600,150,40);
 		search.addActionListener(this);
         search.setFont(font);
-        search.setForeground(Color.BLACK);
-        search.setBackground(Color.LIGHT_GRAY);
+        search.setForeground(Color.WHITE);
+        search.setBackground(blue);
 
         back = new JButton("Go Back");
 		back.setBounds(600,600,150,40);
 		back.addActionListener(this);
         back.setFont(font);
-        back.setForeground(Color.BLACK);
-        back.setBackground(Color.LIGHT_GRAY);
+        back.setForeground(Color.WHITE);
+        back.setBackground(blue);
 
         con.add(usnL);
 		con.add(usnT);
