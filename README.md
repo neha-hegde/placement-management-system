@@ -12,4 +12,4 @@ Modification: Modifies the entered student's credentials by accepting the new va
 
 Searching: Searches and retrives the requested student's credentials and displays it.
 
-General Ledger Problem: Applying General Ledger concept of consequential searching (matching and merging) to select the eligible students for various levels of placements depending on the CGPA and number of Backlogs.
+General Ledger Problem: Applying the General Ledger concept of consequential searching (matching and merging) to select the eligible students for various levels of placements depending on the CGPA and number of Backlogs.
