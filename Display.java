@@ -29,14 +29,14 @@ public class Display extends JFrame implements ActionListener
 
         Color blue = new Color(42, 135, 141);
         Font font = new Font("Verdana", Font.BOLD, 16);
-        
+
         displayheading=new JLabel("The records are:");
         displayheading.setBounds(200, 2, 700,150);
         displayheading.setFont(font);
         displayheading.setForeground(Color.BLACK);
 
         output=new JTextArea();
-        output.setBounds(200, 150, 900,400);
+        output.setBounds(20, 150, 1200,400);
         output.setFont(font);
         output.setForeground(Color.BLACK);
         output.setEditable(false);
@@ -68,12 +68,12 @@ public class Display extends JFrame implements ActionListener
         {
 			try
             {
-                String name = "", usn ="", sem = "", branch = "", cgpa= "", nob="", r;
+                String name = "", usn ="", sem = "", branch = "", cgpa= "", nob="", company="",ctc="",comments="", r;
 
                 File temp = new File("temp.txt");
 				Boolean createNewFile1 = temp.createNewFile();
                 BufferedWriter pw = new BufferedWriter(new FileWriter("temp.txt"));
-                String b = "NAME\t|USN\t|SEM\t|BRANCH\t|CGPA\t|NUMBER OF BACKS";
+                String b = "NAME\t|USN\t|SEM\t|BRANCH\t|CGPA\t|NOB\t|COMPANY\t|CTC\t|COMMENTS";
                 pw.write(b); 
                 pw.write("\n");
 
@@ -87,9 +87,12 @@ public class Display extends JFrame implements ActionListener
 		        	branch=result[3];
 		        	cgpa=result[4];
 		        	nob=result[5];
+                    company=result[6];
+                    ctc=result[7];
+                    comments=result[8];
                     if(name.equals("999"))
                         break;
-                    String bb = name  + "\t|" + usn + "\t|" + sem + "\t|" + branch + "\t|" + cgpa + "\t|" + nob;
+                    String bb = name  + "\t|" + usn + "\t|" + sem + "\t|" + branch + "\t|" + cgpa + "\t|" + nob + "\t|" + company + "\t|" + ctc + "\t|" + comments;
                     pw.write(bb);
                     pw.write("\n");
 		        }
