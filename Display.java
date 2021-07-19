@@ -20,14 +20,16 @@ public class Display extends JFrame implements ActionListener
         super("Display Record");
         con = getContentPane();
         con.setLayout(null);
-        con.setBackground(Color.LIGHT_GRAY);
+        Color  lightBlue = new Color(164, 206, 209);
+        con.setBackground(lightBlue);
 
         con.setSize(300,300);
         con.setLayout(null);
         con.setVisible(true);
 
+        Color blue = new Color(42, 135, 141);
         Font font = new Font("Verdana", Font.BOLD, 16);
-
+        
         displayheading=new JLabel("The records are:");
         displayheading.setBounds(200, 2, 700,150);
         displayheading.setFont(font);
@@ -43,15 +45,15 @@ public class Display extends JFrame implements ActionListener
 		display.setBounds(400,600,150,40);
 		display.addActionListener(this);
         display.setFont(font);
-        display.setForeground(Color.BLACK);
-        display.setBackground(Color.LIGHT_GRAY);
+        display.setForeground(Color.WHITE);
+        display.setBackground(blue);
 
         back = new JButton("Go Back");
 		back.setBounds(600,600,150,40);
 		back.addActionListener(this);
         back.setFont(font);
-        back.setForeground(Color.BLACK);
-        back.setBackground(Color.LIGHT_GRAY);
+        back.setForeground(Color.WHITE);
+        back.setBackground(blue);
 
         con.add(displayheading);
 		con.add(output);
@@ -88,7 +90,6 @@ public class Display extends JFrame implements ActionListener
                     if(name.equals("999"))
                         break;
                     String bb = name  + "\t|" + usn + "\t|" + sem + "\t|" + branch + "\t|" + cgpa + "\t|" + nob;
-                    System.out.println(bb);
                     pw.write(bb);
                     pw.write("\n");
 		        }
@@ -129,9 +130,4 @@ public class Display extends JFrame implements ActionListener
 		dis.setSize(1035,790);
 		dis.setVisible(true);
     }   
-
-
-
-
-    
 }
