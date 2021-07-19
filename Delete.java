@@ -19,7 +19,8 @@ public class Delete extends JFrame implements ActionListener
         super("Delete Record");
         con = getContentPane();
         con.setLayout(null);
-        con.setBackground(Color.LIGHT_GRAY);
+        Color  lightBlue = new Color(164, 206, 209);
+        con.setBackground(lightBlue);
 
         con.setSize(300,300);
         con.setLayout(null);
@@ -27,7 +28,8 @@ public class Delete extends JFrame implements ActionListener
 
         Font font = new Font("Verdana", Font.BOLD, 16);
 
-        usnL=new JLabel("Enter usn of record to be delete");
+        Color blue = new Color(42, 135, 141);
+        usnL=new JLabel("Enter USN of record to be deleted");
         usnL.setBounds(400, 50, 700,150);
         usnL.setFont(font);
         usnL.setForeground(Color.BLACK);
@@ -41,15 +43,15 @@ public class Delete extends JFrame implements ActionListener
 		delete.setBounds(400,600,150,40);
 		delete.addActionListener(this);
         delete.setFont(font);
-        delete.setForeground(Color.BLACK);
-        delete.setBackground(Color.LIGHT_GRAY);
+        delete.setForeground(Color.WHITE);
+        delete.setBackground(blue);
 
         back = new JButton("Go Back");
 		back.setBounds(600,600,150,40);
 		back.addActionListener(this);
         back.setFont(font);
-        back.setForeground(Color.BLACK);
-        back.setBackground(Color.LIGHT_GRAY);
+        back.setForeground(Color.WHITE);
+        back.setBackground(blue);
 
 
         con.add(usnL);
@@ -66,18 +68,23 @@ public class Delete extends JFrame implements ActionListener
                 String usn = usnT.getText();
                 String usn1="",r;
                 int count=0;
-                File file = new File("student.txt");
+                File file = new File("student.txt");  //student
                 BufferedReader br = new BufferedReader(new FileReader(file));
-                File temp = new File("temp.txt");
-                Boolean createNewFile1 = temp.createNewFile();
+
+                File file1 = new File("journal.txt");  //journal
+                BufferedReader br1 = new BufferedReader(new FileReader(file1));
+
+                File temp = new File("temp.txt");  //student temp
+                Boolean createNewFile = temp.createNewFile();
                 BufferedWriter pw = new BufferedWriter(new FileWriter(temp));
-                System.out.println("usn=" + usn);
+
+                File temp1 = new File("temp1.txt");  //journal temp
+                Boolean createNewFile1 = temp.createNewFile();
+                BufferedWriter pw1 = new BufferedWriter(new FileWriter(temp1));
                 while((r= br.readLine()) !=null)
                 {	
-                    System.out.println("while");
                     String[] result = r.split("\\|");
                     usn1=result[1];
-                    System.out.println(usn1 + " " +usn);
                     if(usn1.equals(usn)) 
                     {
                         count=1;
@@ -89,24 +96,37 @@ public class Delete extends JFrame implements ActionListener
                         pw.write("\n");
                     } 
                 }
-                if(count == 0)
-                {
-                    showMessageDialog(null, "Invalid USN");
-                    // Delete del=new Delete();
-		            // del.setSize(1035,790);
-		            // del.setVisible(true);
 
+                while((r= br1.readLine()) !=null)
+                {	
+                    String[] result = r.split("\\|");
+                    usn1=result[0];
+                    if(usn1.equals(usn)) 
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        pw1.write(r);
+                        pw1.write("\n");
+                    } 
                 }
+
+                if(count == 0)
+                    showMessageDialog(null, "Invalid USN");
                 else
-                {
                     showMessageDialog(null, "Record Deleted!");
-                }
+
                 pw.flush();
                 pw.close();
                 br.close();	
+                pw1.close();
+                br1.close();
         
                 file.delete();
                 temp.renameTo(file);
+                file1.delete();
+                temp1.renameTo(file1);
                 
             }
             catch(Exception e)
