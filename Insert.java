@@ -7,100 +7,128 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Insert extends JFrame implements ActionListener 
 {
-    private  JLabel insertHeading,nameL,usnL,semL,branchL,cgpaL,nobL;
-    private  JTextField nameT,usnT,semT,branchT,cgpaT,nobT;
+    private  JLabel insertHeading,nameL,usnL,semL,branchL,cgpaL,nobL,companyL,ctcL,commentsL;
+    private  JTextField nameT,usnT,semT,branchT,cgpaT,nobT,companyT,ctcT,commentsT;
     private  JButton insert,back;
 
     Container con=null;
-    String name="", usn1="", sem="", branch="", cgpa="", nob="";
+    String name="", usn1="", sem="", branch="", cgpa="", nob="",company="",ctc="",comments="";
 
     Insert()
     {
         super("Insert Record");
         con = getContentPane();
         con.setLayout(null);
-        con.setBackground(Color.LIGHT_GRAY);
+		Color  lightBlue = new Color(164, 206, 209);
+        con.setBackground(lightBlue);
 
         con.setSize(300,300);
         con.setLayout(null);
         con.setVisible(true);
 
         insertHeading = new JLabel("INSERT DETAILS");
-        insertHeading.setBounds(550, 2, 400,150);
+        insertHeading.setBounds(550,-50, 400,150);
 
         con.add(insertHeading);
-
+		Color blue = new Color(42, 135, 141);
         Font font = new Font("Verdana", Font.BOLD, 16);
         insertHeading.setFont(font);
         insertHeading.setForeground(Color.BLACK);
 
         nameL=new JLabel("Enter Name:");
-        nameL.setBounds(350,100,150,40);
+        nameL.setBounds(350,70,150,40);
         nameL.setFont(font);
         nameL.setForeground(Color.BLACK);
         nameT=new JTextField(200);
-		nameT.setBounds(725,100,250,50);
+		nameT.setBounds(725,70,250,30);
         nameT.setFont(font);
         nameT.setForeground(Color.BLACK);
 
         usnL=new JLabel("Enter USN:");
-		usnL.setBounds(350,175,150,40);
+		usnL.setBounds(350,130,150,40);
         usnL.setFont(font);
         usnL.setForeground(Color.BLACK);
 		usnT=new JTextField(200);
-		usnT.setBounds(725,175,250,50);
+		usnT.setBounds(725,130,250,30);
         usnT.setFont(font);
         usnT.setForeground(Color.BLACK);
         
         semL=new JLabel("Enter Semester:");
-		semL.setBounds(350,250,150,40);
+		semL.setBounds(350,190,150,40);
         semL.setFont(font);
         semL.setForeground(Color.BLACK);
 		semT=new JTextField(200);
-		semT.setBounds(725,250,250,50);
+		semT.setBounds(725,190,250,30);
         semT.setFont(font);
         semT.setForeground(Color.BLACK);
 
         branchL=new JLabel("Enter Branch:");
-		branchL.setBounds(350,325,150,40);
+		branchL.setBounds(350,250,150,40);
         branchL.setFont(font);
         branchL.setForeground(Color.BLACK);
 		branchT=new JTextField(200);
-		branchT.setBounds(725,325,250,50);
+		branchT.setBounds(725,250,250,30);
         branchT.setFont(font);
         branchT.setForeground(Color.BLACK);
 
         cgpaL=new JLabel("Enter CGPA:");
-		cgpaL.setBounds(350,400,150,40);
+		cgpaL.setBounds(350,310,150,40);
         cgpaL.setFont(font);
         cgpaL.setForeground(Color.BLACK);
 		cgpaT=new JTextField(200);
-		cgpaT.setBounds(725,400,250,50);
+		cgpaT.setBounds(725,310,250,30);
         cgpaT.setFont(font);
         cgpaT.setForeground(Color.BLACK);
 
         nobL=new JLabel("Enter Number of backlogs:");
-		nobL.setBounds(350,475,300,40);
+		nobL.setBounds(350,370,300,40);
         nobL.setFont(font);
         nobL.setForeground(Color.BLACK);
 		nobT=new JTextField(200);
-		nobT.setBounds(725,475,250,50);
+		nobT.setBounds(725,370,250,30);
         nobT.setFont(font);
         nobT.setForeground(Color.BLACK);
+
+		companyL=new JLabel("Enter Company:");
+		companyL.setBounds(350,430,300,40);
+        companyL.setFont(font);
+        companyL.setForeground(Color.BLACK);
+		companyT=new JTextField(200);
+		companyT.setBounds(725,430,250,30);
+        companyT.setFont(font);
+        companyT.setForeground(Color.BLACK);
+
+		ctcL=new JLabel("Enter CTC:");
+		ctcL.setBounds(350,490,300,40);
+        ctcL.setFont(font);
+        ctcL.setForeground(Color.BLACK);
+		ctcT=new JTextField(200);
+		ctcT.setBounds(725,490,250,30);
+        ctcT.setFont(font);
+        ctcT.setForeground(Color.BLACK);
+
+		commentsL=new JLabel("Enter Comments:");
+		commentsL.setBounds(350,550,300,40);
+        commentsL.setFont(font);
+        commentsL.setForeground(Color.BLACK);
+		commentsT=new JTextField(200);
+		commentsT.setBounds(725,550,250,30);
+        commentsT.setFont(font);
+        commentsT.setForeground(Color.BLACK);
 
         insert=new JButton("Insert");
 		insert.setBounds(400,600,150,40);
 		insert.addActionListener(this);
         insert.setFont(font);
-        insert.setForeground(Color.BLACK);
-        insert.setBackground(Color.LIGHT_GRAY);
+        insert.setForeground(Color.WHITE);
+        insert.setBackground(blue);
 
 		back = new JButton("Go Back");
-		back.setBounds(600,600,150,40);
+		back.setBounds(750,600,150,40);
 		back.addActionListener(this);
         back.setFont(font);
-        back.setForeground(Color.BLACK);
-        back.setBackground(Color.LIGHT_GRAY);
+        back.setForeground(Color.WHITE);
+        back.setBackground(blue);
 
         con.add(nameL);
 		con.add(nameT);
@@ -114,6 +142,12 @@ public class Insert extends JFrame implements ActionListener
 		con.add(cgpaT);
         con.add(nobL);
 		con.add(nobT);
+		con.add(companyL);
+		con.add(companyT);
+		con.add(ctcL);
+		con.add(ctcT);
+		con.add(commentsL);
+		con.add(commentsT);
 		con.add(insert);
 		con.add(back);
     }
@@ -124,16 +158,15 @@ public class Insert extends JFrame implements ActionListener
         {
 			try
 			{
-				String p = "999" + "|" + "999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" ;
+				String p = "999" + "|" + "999" + "|" +"999" + "|" +"999" + "|" +"999" + "|" +"999" + "|"+"999" + "|"+"999" + "|"+"999" + "|" ;
 				File data = new File("student.txt");
 				File data1 = new File("journal.txt");
 				if(data.createNewFile() && data1.createNewFile())   
 				{
-					//File data = new File("student.txt");
 					Boolean createNewFile = data.createNewFile();
 					Boolean createNewFile1 = data1.createNewFile();
-					System.out.println("student "+createNewFile);
-					System.out.println("journal "+createNewFile1);
+					// System.out.println("student "+createNewFile);
+					// System.out.println("journal "+createNewFile1);
 					BufferedWriter pw = new BufferedWriter(new FileWriter(data));
 					BufferedWriter pw1 = new BufferedWriter(new FileWriter(data1));
 					pw.write(p);
@@ -150,12 +183,12 @@ public class Insert extends JFrame implements ActionListener
            		String branch = branchT.getText();
            		String cgpa = cgpaT.getText();
            		String nob = nobT.getText();
-				System.out.println(name + usn1 + sem +branch + cgpa + nob);
+				String company = companyT.getText();
+				String ctc = ctcT.getText();
+				String comments = commentsT.getText();
 
                 int check=0,usn2=0,usn3=0;
 				String usn="",r,sort,sort1="";
-		       // System.out.println("Enter the usn");
-		        //String usn1 = scan.next();
 		        File file = new File("student.txt");
 		     	BufferedReader br=new BufferedReader(new FileReader(file));
 			    while((r= br.readLine()) !=null)
@@ -170,151 +203,119 @@ public class Insert extends JFrame implements ActionListener
 		        }
 		        br.close();
 		        //if record already exists
-		        if(check==1)
-		        {
-					System.out.println("count=1");
-		        	//System.out.println("Enter Name, Semester, Branch, CGPA and Number of Backlogs");
-		        	//name = scan.next(); 
-		        	//sem = scan.next(); 
-		        	//branch = scan.next(); 
-		        	//cgpa = scan.next();
-		        	//nob = scan.next();
-		        	String b = usn1 + "|" + sem + "|"  + cgpa + "|" + nob + "|";
+		         if(check==1)
+		         {
+					showMessageDialog(null, "Record Updated!");
+				 }
+		        	String b = usn1 + "|" + sem + "|"  + cgpa + "|" + nob + "|" + company + "|" +ctc + "|" + comments + "|";
 		        	int len = b.length();
-		        	String s1 = "-";
-		        	if(len<50)
-		        	{
-		        		for(int i=len;i<=50;i++)
-		        		b = b.concat(s1);
-		        	}
-		        	//modify(name,usn1,sem,branch,cgpa,nob);
-					File file1 = new File ("journal.txt");
-		        	BufferedReader br1 = new BufferedReader(new FileReader(file1));
+					File file2 = new File ("journal.txt");
+		        	BufferedReader br2 = new BufferedReader(new FileReader(file2));
 		        	usn3=Integer.parseInt(usn1);
-					System.out.println("usn3 " + usn3);
 		        	//sorting before insertion
-					File temp = new File("temp.txt");
-					Boolean createNewFile1 = temp.createNewFile();
-					BufferedWriter pw1 = new BufferedWriter(new FileWriter(temp));
-					System.out.println("count1 " + b);
-		        	String result[]={};
-					String sem1,cgpa1,nob1;
-		        	// sort="";
-		        	while((sort = br1.readLine()) != null)
+					File temp1 = new File("temp.txt");
+					Boolean createNewFile1 = temp1.createNewFile();
+					BufferedWriter pw2 = new BufferedWriter(new FileWriter(temp1));
+		        	String result1[]={};
+					String sem1,cgpa1,nob1,company1,ctc1,comments1;
+		        	while((sort = br2.readLine()) != null)
 		        	{
-						System.out.println("while");
-		        		result = sort.split("\\|");
-		        		usn2=Integer.parseInt(result[0]);
-		        		sem1 = result[1];   
-		        		cgpa1=result[2];
-		        		nob1=result[3];
-		        		sort1 = usn2 + "|" + sem1 + "|" + cgpa1 + "|" + nob1 + "|";
-						System.out.println(sort1);
-						System.out.println(usn3 + " " + usn2);
+		        		result1 = sort.split("\\|");
+		        		usn2=Integer.parseInt(result1[0]);
+		        		sem1 = result1[1];   
+		        		cgpa1=result1[2];
+		        		nob1=result1[3];
+						company1=result1[4];
+						ctc1=result1[5];
+						comments1=result1[6];
+		        		sort1 = usn2 + "|" + sem1 + "|" + cgpa1 + "|" + nob1 + "|" + company1 + "|" +ctc1 + "|" + comments1 + "|";
 		        		if(usn3<usn2)
 		        		{
-		        			pw1.write(b);
-							pw1.write("\n");
+		        			pw2.write(b);
+							pw2.write("\n");
 		        			break;                                            
 		        		}
 		        		else if(usn3 == usn2)        
 		        		{
-		        			pw1.write(sort1); 
-							pw1.write("\n");
-		        			pw1.write(b); 
-							pw1.write("\n");
+		        			pw2.write(sort1); 
+							pw2.write("\n");
+		        			pw2.write(b); 
+							pw2.write("\n");
 		        			break;
 		        		}
-		        		pw1.write(sort1); 
-						pw1.write("\n");
+		        		pw2.write(sort1); 
+						pw2.write("\n");
 		        	}    
 		        	if(sort!=null )
 		        	{
-		        		if(result[0].equals("999"))
+		        		if(result1[0].equals("999"))
 		        		{
-		        			pw1.write(sort1);
-							pw1.write("\n");
+		        			pw2.write(sort1);
+							pw2.write("\n");
 		        		}
 		        		else
 		        		{
 		        			if(usn3>usn2)
 		        			{
-		        				pw1.write(b);
-								pw1.write("\n");
-		        				pw1.write(p);  
-								pw1.write("\n");   
+		        				pw2.write(b);
+								pw2.write("\n");
+		        				pw2.write(p);  
+								pw2.write("\n");   
 		        			}
 		        			else if (usn3 == usn2)
 		        			{
-								System.out.println("while usn3 == usn2" + name + " " + usn1 + " " + sem + " " + branch + " " + cgpa + " " + nob);
-		        				while(!(result[1].equals("999")))
+		        				while(!(result1[1].equals("999")))
 		        				{
-		        					sort = br1.readLine();
-		        					result = sort.split("\\|");
-		        					usn2=Integer.parseInt(result[0]);
-		        					sem1 = result[1];
-		        					cgpa1=result[2];
-		        					nob1=result[3];
-		        					sort1 = usn2 + "|" + sem1 + "|" + cgpa1 + "|" + nob1 + "|";
-									System.out.println("inside while usn3 == usn2" + name + " " + usn2 + " " + sem1 + " " + branch + " " + cgpa1 + " " + nob1);
-		        					pw1.write(sort1);
-									pw1.write("\n");
+		        					sort = br2.readLine();
+		        					result1 = sort.split("\\|");
+		        					usn2=Integer.parseInt(result1[0]);
+		        					sem1 = result1[1];
+		        					cgpa1=result1[2];
+		        					nob1=result1[3];
+									company1=result1[4];
+									ctc1=result1[5];
+									comments1=result1[6];
+		        					sort1 = usn2 + "|" + sem1 + "|" + cgpa1 + "|" + nob1 + "|" + company + "|" +ctc + "|" + comments + "|";
+		        					pw2.write(sort1);
+									pw2.write("\n");
 		        				}
-								System.out.println("after while usn3 == usn2" + name + " " + usn1 + " " + sem + " " + branch + " " + cgpa + " " + nob);
 		        			}
 		        			else
 		        			{
-		        				while(!result[1].equals("999"))
+		        				while(!result1[1].equals("999"))
 		        				{
-		        					pw1.write(sort1);
-									pw1.write("\n");
-		        					sort = br1.readLine();
-		        					result = sort.split("\\|");
-		        					usn2=Integer.parseInt(result[0]);
-		        					sem1 = result[1];
-		        					cgpa1=result[2];
-		        					nob1=result[3];
-		        					sort1 = usn2 + "|" + sem1 + "|" + cgpa1 + "|" + nob1 + "|";
+		        					pw2.write(sort1);
+									pw2.write("\n");
+		        					sort = br2.readLine();
+		        					result1 = sort.split("\\|");
+		        					usn2=Integer.parseInt(result1[0]);
+		        					sem1 = result1[1];
+		        					cgpa1=result1[2];
+		        					nob1=result1[3];
+									company1=result1[4];
+									ctc1=result1[5];
+									comments1=result1[6];
+		        					sort1 = usn2 + "|" + sem1 + "|" + cgpa1 + "|" + nob1 + "|" + company + "|" +ctc + "|" + comments + "|";
 		        				}
 		        			}
-							System.out.println("after after while usn3 == usn2" + name + " " + usn1 + " " + sem + " " + branch + " " + cgpa + " " + nob);
-		        			pw1.write(p);
-							pw1.write("\n");
+		        			pw2.write(p);
+							pw2.write("\n");
 		        		}
 		        	}
-					showMessageDialog(null, "Record Updated!");
-		        	pw1.flush();   
-		        	pw1.close();
-		        	br1.close();
-		        	file1.delete();
-		        	temp.renameTo(file1);
-					System.out.println("before modify" + name + " " + usn1 + " " + sem + " " + branch + " " + cgpa + " " + nob);
-					modify(name,usn1,sem,branch,cgpa,nob);
-		        }
+		        	pw2.flush();   
+		        	pw2.close();
+		        	br2.close();
+		        	file2.delete();
+		        	temp1.renameTo(file2);
+					modify(name,usn1,sem,branch,cgpa,nob,company,ctc,comments);
+		        //}
 		        //if record does not exist
 		        if(check == 0)
 		        {
 		        	File file1 = new File("student.txt");
 		        	BufferedReader br1 = new BufferedReader(new FileReader(file1));
-					System.out.println("check=0");
-		        	//System.out.println("Welcome new user! Enter the following details");
-		        	//System.out.println("Enter Name, USN, Semester, Branch, CGPA, Number of backlogs");
-		        	//name = scan.next();
-		        	//usn = scan.next();
-		        	//sem = scan.next(); 
-		        	//branch = scan.next();
-		        	//cgpa = scan.next();
-		        	//nob = scan.next();
-
-		        	String b = name + "|" + usn1 + "|" + sem + "|" + branch + "|" + cgpa + "|" + nob + "|";
-					System.out.println(b);
-		        	int len = b.length();
-		        	String s1 = "-";
-		        	if(len<50)
-		        	{
-		        		for(int j=len;j<=50;j++)
-		        		b = b.concat(s1);
-		        	}
+		        	b = name + "|" + usn1 + "|" + sem + "|" + branch + "|" + cgpa + "|" + nob + "|" + company + "|" +ctc + "|" + comments + "|";
+		        	len = b.length();
 		        	usn3=Integer.parseInt(usn1);
 
 		        	//sorting before insertion
@@ -322,12 +323,10 @@ public class Insert extends JFrame implements ActionListener
 					Boolean createNewFile = temp.createNewFile();
 					BufferedWriter pw1 = new BufferedWriter(new FileWriter(temp));
 		        	String result[]={};
-					System.out.println("count" + createNewFile);
 		        	while((sort = br1.readLine()) != null)
 		        	{
 		        		result = sort.split("\\|");
 		        		usn2=Integer.parseInt(result[1]);
-						System.out.println(usn3 + " " +usn2);
 		        		if(usn3<usn2)
 		        		{
 		        			pw1.write(b);
@@ -369,7 +368,7 @@ public class Insert extends JFrame implements ActionListener
 
 				this.dispose();
 				Home h=new Home();
-				h.setSize(1035,790);
+				h.setSize(2300,790);
 				h.setVisible(true);
 
            }
@@ -385,7 +384,7 @@ public class Insert extends JFrame implements ActionListener
             {
                 this.dispose();
                 Home h=new Home();
-                h.setSize(1035,790);
+                h.setSize(2300,790);
                 h.setVisible(true);
             }
             catch(Exception e)
@@ -396,11 +395,9 @@ public class Insert extends JFrame implements ActionListener
     }   
 
 
-    public void modify(String name0, String usn0,String sem0,String branch0, String cgpa0,String nob0) throws FileNotFoundException,IOException,NullPointerException
+    public void modify(String name0, String usn0,String sem0,String branch0, String cgpa0,String nob0, String company0, String ctc0, String comments0) throws FileNotFoundException,IOException,NullPointerException
 	{	
 		String usn="",r;
-
-		System.out.println("outside if" + name0 + " " + usn0 + " " + sem0 + " " + branch0 + " " + cgpa0 + " " + nob0);
 
 		File file = new File("student.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
@@ -416,19 +413,8 @@ public class Insert extends JFrame implements ActionListener
 
 			if(usn.equals(usn0))
 			{
-				String b = name0+"|"+usn0+"|"+sem0+"|"+branch0+"|"+cgpa0+"|"+nob0+"|";
-
-				System.out.println("if" + name0 + " " + usn0 + " " + sem0 + " " + branch0 + " " + cgpa0 + " " + nob0);
-
-
+				String b = name0+"|"+usn0+"|"+sem0+"|"+branch0+"|"+cgpa0+"|"+nob0+"|"+company0+"|"+ctc0+"|"+comments0+"|";
 				int len = b.length();
-
-				String s1 = "-";
-				if(len<50)
-				{
-					for(int i=len;i<=50;i++)
-						b = b.concat(s1);
-				}
 				pw.write(b);
 				pw.write("\n");
 			}
@@ -451,7 +437,7 @@ public class Insert extends JFrame implements ActionListener
     public static void main(String args[])
     {
         Insert in = new Insert();
-        in.setSize(1035,740);
+        in.setSize(2300,790);
         in.setVisible(true);
     }   
 }   

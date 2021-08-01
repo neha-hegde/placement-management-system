@@ -117,7 +117,7 @@ public class Display extends JFrame implements ActionListener
             {
                 this.dispose();
                 Home h=new Home();
-                h.setSize(1035,790);
+                h.setSize(2300,790);
                 h.setVisible(true);
             }
             catch(Exception e)
@@ -130,7 +130,7 @@ public class Display extends JFrame implements ActionListener
     public static void main(String args[])
     {
         Display dis=new Display();
-		dis.setSize(1035,790);
+		dis.setSize(2300,790);
 		dis.setVisible(true);
     }   
 }

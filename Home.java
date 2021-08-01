@@ -39,9 +39,9 @@ public class Home extends JFrame implements ActionListener
         welcome.setForeground(Color.BLACK);
 
 		Color blue = new Color(42, 135, 141);
-		insert = new JButton("Insert Details");
+		insert = new JButton("Insert/Modify Details");
 		insert.addActionListener(this);
-		insert.setBounds(200,275,175, 50);
+		insert.setBounds(180,275,230, 50);
 		Font font1 = new Font("Verdana", Font.BOLD, 16);
         insert.setFont(font1);
         insert.setForeground(Color.WHITE);

@@ -166,7 +166,7 @@ public class Eligible extends JFrame implements ActionListener
             {
                 this.dispose();
                 Home h=new Home();
-                h.setSize(1035,790);
+                h.setSize(2300,790);
                 h.setVisible(true);
             }
             catch(Exception e)
@@ -179,7 +179,7 @@ public class Eligible extends JFrame implements ActionListener
     public static void main(String args[])
     {
         Eligible eli=new Eligible();
-		eli.setSize(1035,790);
+		eli.setSize(2300,790);
 		eli.setVisible(true);
     }   
 
